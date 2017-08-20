@@ -4,19 +4,19 @@
 Note this is a minimal implementation inteneded for clarity and ease of explanation, excluding permissioning, pre-condition / sanity checks etc.
 
 ### Contracts
-__1. StaticExternalInterface.sol__
+__1. [StaticExternalInterface.sol](https://github.com/Blockchain-Learning-Group/upgradeable-contracts/blob/master/contracts/StaticExternalInterface.sol)__
 
 This is the interface that will remain constant and exposed to the outside world. This is the contract that will server as the entry point. This interface is not upgradeable but the logic behind it sure is!
 
-__2. UpgradeableInterface.sol__
+__2. [UpgradeableInterface.sol](https://github.com/Blockchain-Learning-Group/upgradeable-contracts/blob/master/contracts/UpgradeableInterfac.sol)__
 
 The interface that all upgradeable contracts must follow.  These are the methods that will be called by StaticExternalInterface.sol and therefore must be implmented by all versions of your upgradeable contracts.  This interface is a very important piece and is what enables the "tricking" of the static interface into believing that the relay in fact implements these methods itself when in reality it does not.
 
-__3. Relay.sol__
+__3. [Relay.sol](https://github.com/Blockchain-Learning-Group/upgradeable-contracts/blob/master/contracts/Relay.sol)__
 
 The contract that relays all calls to the current version of the contract.  This is the connector between the external world and the current version of the contract logic to interact with.
 
-__4. UpgradeableV1 / V2.sol__
+__4. [UpgradeableV1](https://github.com/Blockchain-Learning-Group/upgradeable-contracts/blob/master/contracts/UpgradeableV1.sol) / [V2.sol](https://github.com/Blockchain-Learning-Group/upgradeable-contracts/blob/master/contracts/UpgradeableV2.sol)__
 
 Arbitrary contracts demonstrating various versions of logic may be deployed.
 
