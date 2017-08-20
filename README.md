@@ -1,7 +1,7 @@
 # Upgradeable Contract Examples
 
 ## Basic Upgradeable Conract Example
-Note this is a minimal implementation inteneded for clarity and ease of explanation, excluding permissioning, pre-condition / sanity checks etc.
+Note this is a minimal implementation intended for clarity and ease of explanation, excluding permissioning, pre-condition / sanity checks etc.
 
 ### Contracts
 __1. [StaticExternalInterface.sol](https://github.com/Blockchain-Learning-Group/upgradeable-contracts/blob/master/contracts/StaticExternalInterface.sol)__
