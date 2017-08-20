@@ -10,16 +10,16 @@ contract Relay {
   /**
    * Storage
    */
-  address public latestContract_;
+  address public currentContract_;
   mapping(uint => address) contractVersions_;
   mapping(bytes4 => uint32) public returnDataSizes_;  // Req'd to delegatecall
 
   /**
-   * @dev Constructor - Set the address of the latest version.
-   * @param _latestContract Address of the latest contract to call.
+   * @dev Constructor - Set the address of the current version.
+   * @param _currentContract Address of the current contract to call.
    */
-  function Relay(address _latestContract) {
-    upgrade(1, _latestContract);
+  function Relay(address _currentContract) {
+    upgrade(1, _currentContract);
   }
 
   /**
@@ -45,7 +45,7 @@ contract Relay {
     address _newContract
   ) public {
     contractVersions_[_versionNumber] = _newContract;
-    latestContract_ = _newContract;
+    currentContract_ = _newContract;
   }
 
   /**
@@ -55,15 +55,15 @@ contract Relay {
   function rollback(
     uint _versionNumber
   ) external {
-    latestContract_ = contractVersions_[_versionNumber];
+    currentContract_ = contractVersions_[_versionNumber];
   }
 
   /**
    * @dev The fallback is invoked and effectively relays the call to the correct contract.
    */
   function() external payable {
-    // Note require local var as accessing storage data slot fails via latestContract__slot
-    address _contractAddr = latestContract_;
+    // Note require local var as accessing storage data slot fails via currentContract__slot
+    address _contractAddr = currentContract_;
     uint32 returnSize = returnDataSizes_[msg.sig];
 
     assembly {
